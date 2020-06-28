@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
 use App\Models\MainCategory;
 use App\Models\Vendor;
+use App\Notifications\VendorCreated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -46,9 +48,10 @@ class VendorsController extends Controller
                 $filePath=$request_data['logo'];
             }
 
-//            return $request_data;
-            Vendor::create($request_data);
-            return redirect()->route('admin.vendors.index')->with(['success' => 'تم إضافة المتجر بنجاح']);
+//           return $request_data;
+            $vendor=Vendor::create($request_data);
+            Notification::send($vendor,new VendorCreated($vendor));
+             return redirect()->route('admin.vendors.index')->with(['success' => 'تم إضافة المتجر بنجاح']);
         } catch (\Exception $ex) {
             // return $ex;
 

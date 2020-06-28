@@ -44,7 +44,7 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
                                         <table
-                                            class="table display nowrap table-striped table-bordered zero-configuration">
+                                            class="table display nowrap table-striped table-bordered scroll-horizontal">
                                             <thead>
                                             <tr>
                                                 <th>الاسم </th>
@@ -61,7 +61,7 @@
                                                 @foreach($vendors as $vendor)
                                                     <tr>
                                                         <td>{{$vendor -> name}}</td>
-                                                        <td><img src="{{ $vendor->image_path}}"  style="width: 150px" class="img-thumbnail" alt=""></td>
+                                                        <td><img src="{{ $vendor->image_path}}"  style="width: 150px"  alt=""></td>
                                                         <td>{{$vendor->mobile}}</td>
                                                         <td>{{$vendor->main_category->name}}</td>
                                                         <td>{{$vendor -> getActive()}}</td>

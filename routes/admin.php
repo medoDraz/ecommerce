@@ -25,6 +25,7 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
     ######################### Begin maincategories Route ###################
 
     Route::resource('maincategories', 'MainCategoriesController')->except(['show']);
+    Route::post('maincategories/editactive/{cat_id}', 'MainCategoriesController@editactive')->name('maincategories.editactive');
 
     ######################### Begin Vendors Route ##########################
 

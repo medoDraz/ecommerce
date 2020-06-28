@@ -142,22 +142,6 @@
 
                                                 </div>
                                                 <div class="row">
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="projectinput1">العنوان </label>
-                                                            <input type="text" id="address"
-                                                                   class="form-control"
-                                                                   placeholder="  "
-                                                                   name="address"
-                                                                   value="{{old('address')}}">
-
-                                                            @error("address")
-                                                            <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-
                                                     <div class="col-md-6">
                                                         <div class="form-group mt-1">
                                                             <input type="checkbox" value="1"
@@ -177,6 +161,24 @@
 
                                             </div>
 
+                                            <div class="row">
+                                            	<div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="projectinput1">العنوان </label>
+                                                            <input type="text" id="pac-input"
+                                                                   class="form-control"
+                                                                   placeholder="  "
+                                                                   name="address"
+                                                                   value="{{old('address')}}">
+
+                                                            @error("address")
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                            </div>
+
+                                            <div id="map" style="height: 500px;width: 1000px;"></div>
 
                                             <div class="form-actions">
                                                 <button type="button" class="btn btn-warning mr-1"
@@ -203,17 +205,6 @@
 
 @endsection
 @section('script')
-    <script>
-        $('.logo').change(function () {
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('.image-preview').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
 
-    </script>
 @endsection
 

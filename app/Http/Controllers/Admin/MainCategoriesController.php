@@ -184,4 +184,29 @@ class MainCategoriesController extends Controller
         }
 
     }
+
+    public function editactive(MainCategoryRequest $request, $mainCat_id){
+
+        try{
+
+            $mainCategory = MainCategory::find($mainCat_id);
+            if($request->active == 1){
+                $mainCategory
+                ->update([
+                    'active' => 0,
+                ]);
+            }else{
+                $mainCategory
+                ->update([
+                    'active' => 1,
+                ]);
+            }
+
+            return redirect()->route('admin.maincategories.index')->with(['success' => 'تم تحديث القسم بنجاح']);
+
+        } catch (\Exception $ex) {
+            return redirect()->route('admin.maincategories.index')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
+
+    }
 }

@@ -76,10 +76,18 @@
 
                                                                     </form>
 
-                                                                    <a href=""
+                                                                    <form action="{{ route('admin.maincategories.editactive',$category -> id) }}" method="post" style="display: inline-block;">
+                                                                        {{ csrf_field() }}
+                                                                        {{ method_field('post') }}
+                                                                        <input type="hidden" name="active" value="{{$category -> active}}">
+                                                                        <button type="submit" class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1"> {{$category -> active == 0 ? 'مفعل'  : 'غير مفعل'}}
+                                                                        </button>
+                                                                    </form>
+
+                                                                    {{-- <a href="{{route('admin.maincategories.editactive',$category -> id)}}"
                                                                    class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
-                                                                  مفعل
-                                                                    </a>
+                                                                  {{$category -> active == 0 ? 'مفعل'  : 'غير مفعل'}} {{$category -> active}}
+                                                                    </a> --}}
                                                             </div>
                                                         </td>
                                                     </tr>
