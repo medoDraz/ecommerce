@@ -1,19 +1,23 @@
 @extends('layouts.admin')
 
-@section('title','اللغات')
+
+@section('title')
+    <title>@lang('site.languages')</title>
+@endsection
 
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title"> اللغات </h3>
+                    {{--                    <h3 class="content-header-title"> اللغات </h3>--}}
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية</a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i
+                                            class="la la-home"></i> @lang('site.dashboard') </a>
                                 </li>
-                                <li class="breadcrumb-item active"> اللغات
+                                <li class="breadcrumb-item active"> @lang('site.languages')
                                 </li>
                             </ol>
                         </div>
@@ -27,7 +31,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">جميع لغات الموقع </h4>
+                                    <h3 class="card-title"> @lang('site.languages') </h3>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -49,11 +53,11 @@
                                             class="table display nowrap table-striped table-bordered zero-configuration">
                                             <thead>
                                             <tr>
-                                                <th> الاسم</th>
-                                                <th>الاختصار</th>
-                                                <th>اتجاه</th>
-                                                <th>الحالة</th>
-                                                <th>الإجراءات</th>
+                                                <th>@lang('site.name')</th>
+                                                <th>@lang('site.abbr')</th>
+                                                <th>@lang('site.direction')</th>
+                                                <th>@lang('site.active')</th>
+                                                <th>@lang('site.action')</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -68,15 +72,28 @@
                                                         <td>
                                                             <div class="btn-group" role="group"
                                                                  aria-label="Basic example">
-                                                                <a href="{{route('admin.languages.edit',$language -> id)}}"
-                                                                   class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
+                                                                @if (auth()->user()->hasPermission('languages_update'))
+                                                                    <a href="{{route('admin.languages.edit',$language -> id)}}"
+                                                                       class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                        <i class="la la-edit"></i>
+                                                                        @lang('site.edit')
+                                                                    </a>
+                                                                @endif
 
-                                                                   <form action="{{ route('admin.languages.destroy',$language -> id) }}" method="post" style="display: inline-block;">
+                                                                @if (auth()->user()->hasPermission('languages_delete'))
+                                                                    <form
+                                                                        action="{{ route('admin.languages.destroy',$language -> id) }}"
+                                                                        method="post" style="display: inline-block;">
                                                                         {{ csrf_field() }}
                                                                         {{ method_field('delete') }}
-                                                                        <button type="submit" class="btn btn-outline-danger delete btn-min-width box-shadow-3 mr-1 mb-1"> حذف</button>
+                                                                        <button type="submit"
+                                                                                class="btn btn-outline-danger delete btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                            <i class="la la-trash"></i>
+                                                                            @lang('site.delete')
+                                                                        </button>
 
                                                                     </form>
+                                                                @endif
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -86,32 +103,6 @@
 
                                             </tbody>
                                         </table>
-                                        <div class="justify-content-center d-flex">
-                                            <select class="select2 form-control" multiple="multiple">
-                                                <optgroup label="Eastern Time Zone">
-                                                <option value="CT">Connecticut</option>
-                                                <option value="DE">Delaware</option>
-                                                <option value="FL">Florida</option>
-                                                <option value="GA">Georgia</option>
-                                                <option value="IN">Indiana</option>
-                                                <option value="ME">Maine</option>
-                                                <option value="MD">Maryland</option>
-                                                <option value="MA">Massachusetts</option>
-                                                <option value="MI">Michigan</option>
-                                                <option value="NH">New Hampshire</option>
-                                                <option value="NJ">New Jersey</option>
-                                                <option value="NY">New York</option>
-                                                <option value="NC">North Carolina</option>
-                                                <option value="OH">Ohio</option>
-                                                <option value="PA">Pennsylvania</option>
-                                                <option value="RI">Rhode Island</option>
-                                                <option value="SC">South Carolina</option>
-                                                <option value="VT">Vermont</option>
-                                                <option value="VA">Virginia</option>
-                                                <option value="WV">West Virginia</option>
-                                                </optgroup>
-                                            </select>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -25,11 +25,16 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
     ######################### Begin maincategories Route ###################
 
     Route::resource('maincategories', 'MainCategoriesController')->except(['show']);
-    Route::post('maincategories/editactive/{cat_id}', 'MainCategoriesController@editactive')->name('maincategories.editactive');
+    Route::get('maincategories/editactive/{cat_id}', 'MainCategoriesController@editactive')->name('maincategories.editactive');
 
     ######################### Begin Vendors Route ##########################
 
-    Route::resource('vendors', 'VendorsController')->except(['show']);
+    Route::resource('vendors', 'VendorsController')->except(['destroy']);
+    Route::get('vendors/editactive/{cat_id}', 'VendorsController@editactive')->name('vendors.editactive');
+
+    ######################### Begin Admins Route ##########################
+
+    Route::resource('admins', 'AdminsController');
 
 
 });

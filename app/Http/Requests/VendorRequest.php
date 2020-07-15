@@ -25,11 +25,12 @@ class VendorRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:100',
-            'logo' => 'required|mimes:jpg,jpeg,png',
+            'logo' => 'required_without:id|mimes:jpg,jpeg,png',
             'category_id' => 'required',
             'address' => 'required',
-            'mobile' => 'required',
-//            'direction' => 'required|in:rtl,ltr',
+            'mobile' => 'required|unique:vendors,mobile,'.$this->id,
+            'email' => 'required|unique:vendors,email,'.$this->id,
+            'password' => 'required_without:id',
         ];
     }
 
@@ -38,8 +39,8 @@ class VendorRequest extends FormRequest
         return [
             'required' => 'هذا الحقل مطلوب',
             'name.string' => 'اسم اللغة لابد ان يكون احرف',
-//            'abbr.max' => 'هذا الحقل لابد الا يزيد عن 10 احرف ',
-//            'abbr.string' => 'هذا الحقل لابد ان يكون احرف ',
+            'email.unique' => 'البريد الالكترونى مستخدم من قبل',
+            'mobile.unique' => 'رقم الهاتف مستخدم من قبل',
             'name.max' => 'اسم اللغة لابد الا يزيد عن 100 احرف ',
             'logo.mimes'=>'يجب انت تكون صورة',
         ];

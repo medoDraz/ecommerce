@@ -12,6 +12,14 @@ use Intervention\Image\Facades\Image;
 
 class MainCategoriesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:main_categories_create'])->only('create');
+        $this->middleware(['permission:main_categories_read'])->only('read');
+        $this->middleware(['permission:main_categories_update'])->only('edit');
+        $this->middleware(['permission:main_categories_delete'])->only('destroy');
+        $this->middleware(['permission:main_categories_active'])->only('editactive');
+    }
 
     public function index()
     {
@@ -166,6 +174,11 @@ class MainCategoriesController extends Controller
 
             $mainCategory = MainCategory::find($mainCat_id);
 
+            $vendors = $mainCategory->vendors();
+            if(isset($vendors) && $vendors->count() > 0){
+                return redirect()->route('admin.maincategories.index')->with(['error' => 'لا يمكن حذف هذا القسم ']);
+            }
+
             if ($mainCategory->photo != 'default.png') {
                 Storage::disk('public_uploads')->delete('/maincategory/' . $mainCategory->photo);
             }
@@ -185,24 +198,17 @@ class MainCategoriesController extends Controller
 
     }
 
-    public function editactive(MainCategoryRequest $request, $mainCat_id){
+    public function editactive($mainCat_id){
 
         try{
 
             $mainCategory = MainCategory::find($mainCat_id);
-            if($request->active == 1){
-                $mainCategory
-                ->update([
-                    'active' => 0,
-                ]);
-            }else{
-                $mainCategory
-                ->update([
-                    'active' => 1,
-                ]);
-            }
 
-            return redirect()->route('admin.maincategories.index')->with(['success' => 'تم تحديث القسم بنجاح']);
+            $status = $mainCategory->active == 0 ? 1 : 0;
+
+            $mainCategory->update(['active' => $status]);
+
+            return redirect()->route('admin.maincategories.index')->with(['success' => 'تم تحديث الحالة بنجاح']);
 
         } catch (\Exception $ex) {
             return redirect()->route('admin.maincategories.index')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);

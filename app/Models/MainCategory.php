@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\MainCategoryObserver;
 use Illuminate\Database\Eloquent\Model;
 
 class MainCategory extends Model
@@ -12,6 +13,17 @@ class MainCategory extends Model
         'translation_lang', 'translation_of','name','slug','photo','active',
     ];
 
+    protected $appends=['image_path'];
+
+    public function getNameAttribute($value){
+        return ucfirst($value);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        MainCategory::observe(MainCategoryObserver::class);
+    }
 
     public function scopeActive($query){
         return $query -> where('active',1);

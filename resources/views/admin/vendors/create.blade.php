@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-@section('title','إضافة متجر جديد')
+@section('title')
+    <title>@lang('site.add_vendor')</title>
+@endsection
 @section('content')
 
     <div class="app-content content">
@@ -9,11 +11,11 @@
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية </a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="la la-home"></i> @lang('site.dashboard') </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.vendors.index')}}"> المتاجر </a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.vendors.index')}}"> @lang('site.vendors') </a>
                                 </li>
-                                <li class="breadcrumb-item active">إضافة متجر
+                                <li class="breadcrumb-item active">@lang('site.add_vendor')
                                 </li>
                             </ol>
                         </div>
@@ -27,7 +29,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form"> إضافة متجر </h4>
+                                    <h3 class="card-title" id="basic-layout-form"> @lang('site.add_vendor') </h3>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -50,9 +52,9 @@
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label> صوره المتجر </label>
+                                                        <label> @lang('site.logo') </label>
                                                         <label id="projectinput7" class="file center-block">
-                                                            <input type="file" id="file" name="logo" class="logo">
+                                                            <input type="file" id="file" name="logo" class="logo" required>
                                                             <span class="file-custom"></span>
                                                         </label>
                                                         @error('logo')
@@ -72,11 +74,11 @@
 
                                             <div class="form-body">
 
-                                                <h4 class="form-section"><i class="ft-home"></i> بيانات المتجر </h4>
+                                                <h4 class="form-section"><i class="ft-home"></i> @lang('site.vendor_detail') </h4>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> اسم المتجر</label>
+                                                            <label for="projectinput1"> @lang('site.vendor_name')</label>
                                                             <input type="text" id="name"
                                                                    class="form-control"
                                                                    placeholder="  "
@@ -91,9 +93,9 @@
 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1">اختر القسم</label>
+                                                            <label for="projectinput1">@lang('site.category_name')</label>
                                                             <select name="category_id" class="select2 form-control">
-                                                                <optgroup label="من فضلك اختلا القسم">
+                                                                <optgroup label="@lang('site.choose_category')">
                                                                     @if($categories && $categories->count() >0)
                                                                         @foreach($categories as $category)
                                                                             <option value="{{$category->id}}">{{$category->name}}</option>
@@ -112,7 +114,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1">الهاتف</label>
+                                                            <label for="projectinput1">@lang('site.mobile')</label>
                                                             <input type="number" id="mobile"
                                                                    class="form-control"
                                                                    placeholder="  "
@@ -127,7 +129,7 @@
 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1">البريد الالكترونى</label>
+                                                            <label for="projectinput1">@lang('site.email')</label>
                                                             <input type="email" id="email"
                                                                    class="form-control"
                                                                    placeholder="  "
@@ -142,6 +144,22 @@
 
                                                 </div>
                                                 <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="projectinput1">@lang('site.password')</label>
+                                                            <input type="password" id="password"
+                                                                   class="form-control"
+                                                                   placeholder="  "
+                                                                   name="password"
+                                                                   min="6">
+
+                                                            @error("password")
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
                                                     <div class="col-md-6">
                                                         <div class="form-group mt-1">
                                                             <input type="checkbox" value="1"
@@ -150,13 +168,15 @@
                                                                    class="switchery" data-color="success"
                                                                    checked/>
                                                             <label for="switcheryColor4"
-                                                                   class="card-title ml-1">الحالة</label>
+                                                                   class="card-title ml-1">@lang('site.active')</label>
 
                                                             @error("category.active")
                                                             <span class="text-danger"> </span>
                                                             @enderror
                                                         </div>
                                                     </div>
+
+
                                                 </div>
 
                                             </div>
@@ -164,7 +184,7 @@
                                             <div class="row">
                                             	<div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1">العنوان </label>
+                                                            <label for="projectinput1">@lang('site.address') </label>
                                                             <input type="text" id="pac-input"
                                                                    class="form-control"
                                                                    placeholder="  "
@@ -183,10 +203,10 @@
                                             <div class="form-actions">
                                                 <button type="button" class="btn btn-warning mr-1"
                                                         onclick="history.back();">
-                                                    <i class="ft-x"></i> تراجع
+                                                    <i class="ft-x"></i> @lang('site.cancel')
                                                 </button>
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> حفظ
+                                                    <i class="la la-check-square-o"></i> @lang('site.save')
                                                 </button>
                                             </div>
                                         </form>

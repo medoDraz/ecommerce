@@ -2,12 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3ef5cb7-d257-42a7-b3ff-6a2ce4e8c0e7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ecommerce.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ecommerce.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/LanguagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/LanguagesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/MainCategoriesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/MainCategoriesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/VendorsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/VendorsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/VendorRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/VendorRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Language.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Language.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/MainCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/MainCategory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Vendor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Vendor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/admin/css-rtl/components.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/admin/css-rtl/components.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_06_11_123956_create_admins_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_06_11_123956_create_admins_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_06_24_080304_create_vendors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_06_24_080304_create_vendors_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/maincategory/7EpeHzGV5NkMISCMERRDMGiI6Ek6DvXWcMc40l7a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/maincategory/NEvDlDvgkk3CWRnXLD0GGquGfLWkt1bTcAAqFPCo.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/maincategory/z6l1CJFHZLBe9yM2qRs8V6D4xtEsA2vAVEs7kqeu.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/vendors/1B3WzNtvOm44fGHsgyexRquzASwEbbqSgePrmYqF.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/vendors/2noDCht2sr0xqNfAWIOdCLLbIeWVDwKuFpjJTjWt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/vendors/9kXFSsp0UQwvcTF1E1Pp7D6Wrc1IjS3V8Z2VA9K5.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/vendors/DPLSKEx3D1NAullK403GuFzMrbAVk9aRO8gIVZi4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/vendors/HeR03t4INM3CQsuFqSbcL836CAX29sXX1JBigcLt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/vendors/IZRP1NGyjG10YneJI1fZwz2TYwkbTwwf98WbR1yo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/vendors/WXL8Y0mglZXPlZ9QkYRd4wE6ROtpF4jHaYDy575u.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/vendors/XVGBckaYk1ypgTDeaOaXWLAMD5PPWqklK4tdeX3s.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/uploads/vendors/ZdZPBnh1HDxLGIrKHLUkWAbYtcXd34Fc4ZK0ZykL.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/includes/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/includes/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/includes/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/includes/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/languages/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/languages/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/languages/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/languages/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/languages/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/languages/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/maincategories/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/maincategories/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/maincategories/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/maincategories/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/maincategories/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/maincategories/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/vendors/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/vendors/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/vendors/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/vendors/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/vendors/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/vendors/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
@@ -129,15 +165,22 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/vendor/scrivo/highlight.php" />
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/vendor/kkszymanowski/traitor" />
+      <path value="$PROJECT_DIR$/vendor/santigarcor/laratrust" />
     </include_path>
   </component>
   <component name="ProjectId" id="1dl1ukoZzsaqEagi1oUdNvycVpG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Notifications" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\ecommerce\app\Notifications" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -170,6 +213,12 @@
       <workItem from="1592985105333" duration="9988000" />
       <workItem from="1592996482594" duration="3116000" />
       <workItem from="1593330732123" duration="4306000" />
+      <workItem from="1593343541330" duration="4332000" />
+      <workItem from="1593590356075" duration="4448000" />
+      <workItem from="1594108305275" duration="4967000" />
+      <workItem from="1594554595207" duration="15626000" />
+      <workItem from="1594713888199" duration="13804000" />
+      <workItem from="1594800131573" duration="7275000" />
     </task>
     <servers />
   </component>
@@ -181,7 +230,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

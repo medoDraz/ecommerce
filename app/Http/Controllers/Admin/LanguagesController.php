@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class LanguagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:languages_create'])->only('create');
+        $this->middleware(['permission:languages_read'])->only('read');
+        $this->middleware(['permission:languages_update'])->only('edit');
+        $this->middleware(['permission:languages_delete'])->only('destroy');
+        $this->middleware(['permission:languages_active'])->only('editactive');
+    }
 
     public function index()
     {
@@ -86,6 +94,23 @@ class LanguagesController extends Controller
 
         } catch (\Exception $ex) {
             return redirect()->route('admin.languages.index')->with(['error' => 'هناك خطا ما يرجي المحاوله فيما بعد']);
+        }
+    }
+
+    public function editactive($vendor_id)
+    {
+        try{
+
+            $language = Language::find($vendor_id);
+
+            $status = $language->active == 0 ? 1 : 0;
+
+            $language->update(['active' => $status]);
+
+            return redirect()->route('admin.vendors.index')->with(['success' => 'تم تحديث الحالة بنجاح']);
+
+        } catch (\Exception $ex) {
+            return redirect()->route('admin.vendors.index')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
 }

@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
-@section('title','لوحة التحكم')
+@section('title')
+    <title>@lang('site.dashboard1')</title>
+@endsection
 
 @section('content')
     <div class="app-content content">

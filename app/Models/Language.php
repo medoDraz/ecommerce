@@ -12,6 +12,10 @@ class Language extends Model
         'abbr', 'locale','name','direction','active',
     ];
 
+    public function getNameAttribute($value){
+        return ucfirst($value);
+    }
+
     public function scopeActive($query){
         return $query -> where('active',1);
     }

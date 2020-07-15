@@ -1,17 +1,20 @@
 @extends('layouts.admin')
-@section('title','المتاجر ')
+@section('title')
+    <title>@lang('site.vendors')</title>
+@endsection
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title"> المتاجر </h3>
+                    {{--                    <h3 class="content-header-title"> المتاجر </h3>--}}
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية</a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i
+                                            class="la la-home"></i> @lang('site.dashboard') </a>
                                 </li>
-                                <li class="breadcrumb-item active"> المتاجر
+                                <li class="breadcrumb-item active"> @lang('site.vendors')
                                 </li>
                             </ol>
                         </div>
@@ -25,7 +28,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">جميع المتاجر </h4>
+                                    <h3 class="card-title">@lang('site.all_vendors')</h3>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -47,12 +50,12 @@
                                             class="table display nowrap table-striped table-bordered scroll-horizontal">
                                             <thead>
                                             <tr>
-                                                <th>الاسم </th>
-                                                <th> اللوجو</th>
-                                                <th>الهاتف</th>
-                                                <th>القسم الرئيسى</th>
-                                                <th>الحالة </th>
-                                                <th>الإجراءات</th>
+                                                <th>@lang('site.name')</th>
+                                                <th>@lang('site.logo')</th>
+                                                <th>@lang('site.mobile')</th>
+                                                <th>@lang('site.main_category')</th>
+                                                <th>@lang('site.active')</th>
+                                                <th>@lang('site.action')</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -61,27 +64,34 @@
                                                 @foreach($vendors as $vendor)
                                                     <tr>
                                                         <td>{{$vendor -> name}}</td>
-                                                        <td><img src="{{ $vendor->image_path}}"  style="width: 150px"  alt=""></td>
+                                                        <td><img src="{{ $vendor->image_path}}"
+                                                                 style="width: 130px; height: 70px" alt=""></td>
                                                         <td>{{$vendor->mobile}}</td>
                                                         <td>{{$vendor->main_category->name}}</td>
                                                         <td>{{$vendor -> getActive()}}</td>
                                                         <td>
                                                             <div class="btn-group" role="group"
                                                                  aria-label="Basic example">
-                                                                <a href="{{ route('admin.vendors.edit',$vendor -> id) }}"
-                                                                   class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
+                                                                @if (auth()->user()->hasPermission('vendors_update'))
+                                                                    <a href="{{ route('admin.vendors.edit',$vendor -> id) }}"
+                                                                       class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                        <i class="la la-edit"></i>
+                                                                        @lang('site.edit')</a>
+                                                                @endif
 
-                                                                <form action="{{ route('admin.vendors.destroy',$vendor -> id) }}" method="post" style="display: inline-block;">
-                                                                    {{ csrf_field() }}
-                                                                    {{ method_field('delete') }}
-                                                                    <button type="submit" class="btn btn-outline-danger delete btn-min-width box-shadow-3 mr-1 mb-1"> حذف</button>
+                                                                @if (auth()->user()->hasPermission('vendors_delete'))
+                                                                    <a href="{{ route('admin.vendors.show',$vendor -> id) }}"
+                                                                       class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                        <i class="la la-eye"></i>
+                                                                        @lang('site.show')</a>
+                                                                @endif
 
-                                                                </form>
-
-                                                                <a href=""
-                                                                   class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
-                                                                    مفعل
-                                                                </a>
+                                                                @if (auth()->user()->hasPermission('vendors_active'))
+                                                                    <a href="{{ route('admin.vendors.editactive',$vendor->id) }}"
+                                                                       class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                        {{$vendor -> active == 0 ? 'تفعيل'  : 'إلغاء تفعيل'}}
+                                                                    </a>
+                                                                @endif
                                                             </div>
                                                         </td>
                                                     </tr>

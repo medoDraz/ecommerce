@@ -30,19 +30,19 @@
                 <ul class="nav navbar-nav float-right">
                     <li class="dropdown dropdown-user nav-item">
                         <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                <span class="mr-1">مرجبا
+                <span class="mr-1">@lang('site.welcome')
                   <span
                 class="user-name text-bold-700">{{auth()->user()->name}}</span>
                 </span>
                             <span class="avatar avatar-online">
-                            <img  style="height: 35px;" src="{{auth()->user()->photo? auth()->user()->photo : asset('assets/admin/images/users_images/default.png')}}" alt="avatar"><i></i></span>
+                            <img  style="height: 35px;" src="{{auth()->user()->image_path}}" alt="avatar"><i></i></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href=""><i
-                                    class="ft-user"></i> تعديل الملف الشحصي </a>
+                                    class="ft-user"></i> @lang('site.update_profile') </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                                <i class="ft-power"></i> تسجيل الخروج </a>
+                                <i class="ft-power"></i> @lang('site.logout') </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>

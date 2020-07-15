@@ -1,17 +1,20 @@
 @extends('layouts.admin')
-@section('title','الاقسام الرئيسية')
+@section('title')
+    <title>@lang('site.main_categories')</title>
+@endsection
 @section('content')
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title"> الاقسام الرئيسية </h3>
+                    {{--                    <h3 class="content-header-title"> الاقسام الرئيسية </h3>--}}
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية</a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i
+                                            class="la la-home"></i> @lang('site.dashboard') </a>
                                 </li>
-                                <li class="breadcrumb-item active"> الاقسام الرئيسية
+                                <li class="breadcrumb-item active">@lang('site.main_categories')
                                 </li>
                             </ol>
                         </div>
@@ -25,7 +28,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">جميع الاقسام الرئيسية </h4>
+                                    <h3 class="card-title">@lang('site.all_main_categories') </h3>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -47,11 +50,12 @@
                                             class="table display nowrap table-striped table-bordered zero-configuration">
                                             <thead>
                                             <tr>
-                                                <th>القسم </th>
-                                                <th> اللغة</th>
-                                                <th>الحالة</th>
-                                                <th>صوره القسم</th>
-                                                <th>الإجراءات</th>
+                                                <th>@lang('site.category')</th>
+                                                <th>@lang('site.language')</th>
+                                                <th>@lang('site.active')</th>
+                                                <th>@lang('site.vendor_count')</th>
+                                                <th>@lang('site.category_image')</th>
+                                                <th>@lang('site.action')</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -62,32 +66,41 @@
                                                         <td>{{$category -> name}}</td>
                                                         <td>{{get_default_lang()}}</td>
                                                         <td>{{$category -> getActive()}}</td>
-                                                        <td><img src="{{ $category->image_path}}"  style="width: 150px" class="img-thumbnail" alt=""></td>
+                                                        <td>{{$category ->vendors->count()}}</td>
+                                                        <td><img src="{{ $category->image_path}}" style="width: 150px"
+                                                                 class="img-thumbnail" alt=""></td>
                                                         <td>
                                                             <div class="btn-group" role="group"
                                                                  aria-label="Basic example">
-                                                                <a href="{{ route('admin.maincategories.edit',$category -> id) }}"
-                                                                   class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">تعديل</a>
+                                                                @if (auth()->user()->hasPermission('main_categories_update'))
+                                                                    <a href="{{ route('admin.maincategories.edit',$category -> id) }}"
+                                                                       class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                        <i class="la la-edit"></i>
+                                                                        @lang('site.edit')</a>
+                                                                @endif
 
-                                                                   <form action="{{ route('admin.maincategories.destroy',$category -> id) }}" method="post" style="display: inline-block;">
+                                                                @if (auth()->user()->hasPermission('main_categories_delete'))
+                                                                    <form
+                                                                        action="{{ route('admin.maincategories.destroy',$category -> id) }}"
+                                                                        method="post" style="display: inline-block;">
                                                                         {{ csrf_field() }}
                                                                         {{ method_field('delete') }}
-                                                                        <button type="submit" class="btn btn-outline-danger delete btn-min-width box-shadow-3 mr-1 mb-1"> حذف</button>
-
-                                                                    </form>
-
-                                                                    <form action="{{ route('admin.maincategories.editactive',$category -> id) }}" method="post" style="display: inline-block;">
-                                                                        {{ csrf_field() }}
-                                                                        {{ method_field('post') }}
-                                                                        <input type="hidden" name="active" value="{{$category -> active}}">
-                                                                        <button type="submit" class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1"> {{$category -> active == 0 ? 'مفعل'  : 'غير مفعل'}}
+                                                                        <button type="submit"
+                                                                                class="btn btn-outline-danger delete btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                            <i class="la la-trash"></i>
+                                                                            @lang('site.delete')
                                                                         </button>
-                                                                    </form>
 
-                                                                    {{-- <a href="{{route('admin.maincategories.editactive',$category -> id)}}"
-                                                                   class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
-                                                                  {{$category -> active == 0 ? 'مفعل'  : 'غير مفعل'}} {{$category -> active}}
-                                                                    </a> --}}
+                                                                    </form>
+                                                                @endif
+
+                                                                @if (auth()->user()->hasPermission('main_categories_active'))
+                                                                    <a href="{{route('admin.maincategories.editactive',$category -> id)}}"
+                                                                       class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
+
+                                                                        {{$category -> active == 0 ? 'تفعيل'  : 'إلغاء تفعيل'}}
+                                                                    </a>
+                                                                @endif
                                                             </div>
                                                         </td>
                                                     </tr>

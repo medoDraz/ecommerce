@@ -1,5 +1,7 @@
 @extends('layouts.admin')
-@section('title','إضافة لغة جديدة')
+@section('title')
+    <title>@lang('site.add_language')</title>
+@endsection
 @section('content')
 
     <div class="app-content content">
@@ -9,11 +11,11 @@
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية </a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="la la-home"></i> @lang('site.dashboard') </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.languages.index')}}"> أللغات </a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.languages.index')}}"> @lang('site.languages') </a>
                                 </li>
-                                <li class="breadcrumb-item active">إضافة لغة
+                                <li class="breadcrumb-item active">@lang('site.add_language')
                                 </li>
                             </ol>
                         </div>
@@ -27,7 +29,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form"> إضافة لغة </h4>
+                                    <h4 class="card-title" id="basic-layout-form"> @lang('site.add_language') </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -48,15 +50,15 @@
                                             @csrf
 
                                             <div class="form-body">
-                                                <h4 class="form-section"><i class="ft-home"></i> بيانات  اللغة </h4>
+                                                <h4 class="form-section"><i class="ft-home"></i> @lang('site.language_detail') </h4>
 
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> اسم اللغة </label>
-                                                            <input type="text" value="" id="name"
+                                                            <label for="projectinput1"> @lang('site.language_name') </label>
+                                                            <input type="text" id="name"
                                                                    class="form-control"
-                                                                   placeholder="ادخل اسم اللغة  "
+                                                                   placeholder=""
                                                                    name="name"
                                                                    value="{{old('name')}}">
                                                             @error('name')
@@ -67,10 +69,10 @@
 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> أختصار اللغة </label>
-                                                            <input type="text" value="" id="name"
+                                                            <label for="projectinput1"> @lang('site.language_abbr') </label>
+                                                            <input type="text"  id="name"
                                                                    class="form-control"
-                                                                   placeholder="ادخل أختصار اللغة  "
+                                                                   placeholder=""
                                                                    name="abbr"
                                                                    value="{{old('abbr')}}">
                                                             @error('abbr')
@@ -86,11 +88,11 @@
 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput2"> الاتجاة </label>
+                                                            <label for="projectinput2"> @lang('site.language_direction') </label>
                                                             <select name="direction" class="select2 form-control">
-                                                                <optgroup label="من فضلك أختر اتجاه اللغة ">
-                                                                    <option value="rtl">من اليمين الي اليسار</option>
-                                                                    <option value="ltr">من اليسار الي اليمين</option>
+                                                                <optgroup label="@lang('site.choose_direction') ">
+                                                                    <option value="rtl">@lang('site.rtl')</option>
+                                                                    <option value="ltr">@lang('site.ltr')</option>
                                                                 </optgroup>
                                                             </select>
                                                             @error('direction')
@@ -109,7 +111,7 @@
                                                                    class="switchery" data-color="success"
                                                                    checked/>
                                                             <label for="switcheryColor4"
-                                                                   class="card-title ml-1">الحالة </label>
+                                                                   class="card-title ml-1">@lang('site.active') </label>
 
                                                             @error('active')
                                                             <span class="text-danger">{{$message}}</span>
@@ -123,10 +125,10 @@
                                             <div class="form-actions">
                                                 <button type="button" class="btn btn-warning mr-1"
                                                         onclick="history.back();">
-                                                    <i class="ft-x"></i> إلغاء
+                                                    <i class="ft-x"></i> @lang('site.cancel')
                                                 </button>
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> حفظ
+                                                    <i class="la la-check-square-o"></i> @lang('site.save')
                                                 </button>
                                             </div>
                                         </form>

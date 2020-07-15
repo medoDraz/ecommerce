@@ -12,9 +12,14 @@ class Vendor extends Model
     protected $table = 'vendors';
 
     protected $fillable = [
-        'name', 'logo','mobile','address','email','category_id','active',
+        'name', 'logo','mobile','address','email','password','category_id','active',
     ];
 
+    protected $appends=['image_path'];
+
+    public function getNameAttribute($value){
+        return ucfirst($value);
+    }
 
     public function scopeActive($query){
         return $query -> where('active',1);
