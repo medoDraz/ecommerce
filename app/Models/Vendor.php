@@ -12,7 +12,7 @@ class Vendor extends Model
     protected $table = 'vendors';
 
     protected $fillable = [
-        'name', 'logo','mobile','address','email','password','category_id','active',
+        'name', 'logo','mobile','address','email','password','category_id','active','latitude', 'longitude',
     ];
 
     protected $appends=['image_path'];
@@ -36,7 +36,7 @@ class Vendor extends Model
 
     public function scopeSelection($query){
 
-        return $query -> select('id','name','category_id','logo','mobile','active');
+        return $query -> select('id','name','category_id','logo','mobile','active','latitude', 'longitude');
     }
 
     public function main_category(){

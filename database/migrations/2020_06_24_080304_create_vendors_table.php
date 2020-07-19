@@ -20,6 +20,8 @@ class CreateVendorsTable extends Migration
             $table->string('mobile')->unique();
             $table->text('address');
             $table->string('email')->unique();
+            $table->string('latitude');
+            $table->string('longitude');
             $table->string('password');
             $table->bigInteger('category_id');
             $table->tinyInteger('active')->default(0);

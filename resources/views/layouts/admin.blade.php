@@ -145,9 +145,9 @@
 
 <script src="{{asset('assets/admin/js/scripts/modal/components-modal.js')}}" type="text/javascript"></script>
 <script src="{{ asset('assets/admin/js/scripts/image_preview.js') }}"></script>
-<script src="{{ asset('assets/admin/js/scripts/googlemap.js') }}"></script>
+<!-- <script src="{{ asset('assets/admin/js/scripts/googlemap.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKZAuxH9xTzD2DLY2nKSPKrgRi2_y0ejs&libraries=places&callback=initAutocomplete&language=ar&region=EG
-         async defer"></script>
+         async defer"></script> -->
 
 <script>
 
