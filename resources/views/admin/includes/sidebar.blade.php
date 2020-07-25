@@ -34,7 +34,7 @@
                             class="la la-book"></i>
                         <span class="menu-title" data-i18n="nav.dash.main"> @lang('site.main_categories') </span>
                         <span
-                            class="badge badge badge-danger badge-pill float-right mr-2">{{App\Models\MainCategory::count()}}</span>
+                            class="badge badge badge-danger badge-pill float-right mr-2">{{App\Models\MainCategory::defaultCategory()->count()}}</span>
                     </a>
                     <ul class="menu-content">
                         <li class="@if(request()->segment(2) == 'maincategories') active @endif"><a class="menu-item"
@@ -44,6 +44,27 @@
                         @if (auth()->user()->hasPermission('main_categories_create'))
                             <li><a class="menu-item" href="{{route('admin.maincategories.create')}}"
                                    data-i18n="nav.dash.crypto">@lang('site.add_main_category')</a>
+                            </li>
+                        @endif
+                    </ul>
+                </li>
+            @endif
+
+            @if (auth()->user()->hasPermission('sub_categories_read'))
+                <li class="nav-item @if(request()->segment(2) == 'subcategories') active @endif"><a href=""><i
+                            class="la la-book"></i>
+                        <span class="menu-title" data-i18n="nav.dash.main"> @lang('site.sub_categories') </span>
+                        <span
+                            class="badge badge badge-danger badge-pill float-right mr-2">{{App\Models\SubCategory::defaultCategory()->count()}}</span>
+                    </a>
+                    <ul class="menu-content">
+                        <li class="@if(request()->segment(2) == 'subcategories') active @endif"><a class="menu-item"
+                                                                                                    href="{{route('admin.subcategories.index')}}"
+                                                                                                    data-i18n="nav.dash.ecommerce"> @lang('site.show_all') </a>
+                        </li>
+                        @if (auth()->user()->hasPermission('sub_categories_create'))
+                            <li><a class="menu-item" href="{{route('admin.subcategories.create')}}"
+                                   data-i18n="nav.dash.crypto">@lang('site.add_sub_category')</a>
                             </li>
                         @endif
                     </ul>

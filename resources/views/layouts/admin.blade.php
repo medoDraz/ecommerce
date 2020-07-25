@@ -3,6 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description"
           content="Modern admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities with bitcoin dashboard.">
@@ -69,7 +72,7 @@
     <!-- END Page Level CSS-->
     <!-- BEGIN Custom CSS-->
     <!-- END Custom CSS-->
-    @notify_css
+    <!-- @notify_css -->
     @yield('style')
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
     <style>
@@ -92,11 +95,13 @@
 @include('admin.includes.sidebar')
 
 @yield('content')
+
+{{--@include('admin.includes.alerts.success')--}}
 <!-- ////////////////////////////////////////////////////////////////////////////-->
 @include('admin.includes.footer')
 
-@notify_js
-@notify_render
+<!-- @notify_js -->
+<!-- @notify_render -->
 
 
 
@@ -172,7 +177,9 @@
     // });//end of delete
 
 
-
+    setTimeout(() => {
+        jQuery('.alert').remove();
+    }, 5000);
 
     $('#meridians1').timeDropper({
         meridians: true,

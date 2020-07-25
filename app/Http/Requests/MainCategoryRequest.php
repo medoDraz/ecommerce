@@ -30,4 +30,16 @@ class MainCategoryRequest extends FormRequest
             // 'category.*.active' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'required' => 'هذا الحقل مطلوب',
+            'name.string' => 'اسم اللغة لابد ان يكون احرف',
+            'email.unique' => 'البريد الالكترونى مستخدم من قبل',
+            'mobile.unique' => 'رقم الهاتف مستخدم من قبل',
+            'name.max' => 'اسم اللغة لابد الا يزيد عن 100 احرف ',
+            'logo.mimes'=>'يجب انت تكون صورة',
+        ];
+    }
 }

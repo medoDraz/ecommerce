@@ -79,9 +79,15 @@ return [
     'category' => 'القسم',
     'category_detail' => 'بيانات القسم',
     'language' => 'اللغة',
-    'vendors_count' => 'عدد التجار',
+    'vendor_count' => 'عدد التجار',
     'category_image' => 'صوره القسم',
     'all_main_categories' => 'جميع الأقسام الرئيسية',
+
+/////////////////////Sub Category/////////////////
+    'sub_categories' => 'الأقسام الفرعية',
+    'sub_category' => 'القسم الفرعى',
+    'add_sub_category' => 'إضافة قسم فرعى جديد ',
+    'all_sub_categories' => 'جميع الأقسام الفرعية',
 
 //////////////////Vendors/////////////////////////
     'vendors' => 'المتاجر',

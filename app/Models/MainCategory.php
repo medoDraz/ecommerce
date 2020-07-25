@@ -26,7 +26,11 @@ class MainCategory extends Model
     }
 
     public function scopeActive($query){
-        return $query -> where('active',1);
+        return $query -> where('activ',1);
+    }
+
+    public function scopeDefaultCategory($query){
+        return $query -> where('translation_of',0);
     }
 
     public function scopeSelection($query){
@@ -40,14 +44,21 @@ class MainCategory extends Model
     }
 
     public function getImagePathAttribute(){
-        return asset('public/uploads/maincategory/'.$this->photo);
+        return asset('uploads/maincategory/'.$this->photo);
     }
 
+    ///get all category translation
     public function categories(){
         return $this -> hasMany(self::class,'translation_of');
     }
     public function vendors(){
-        return $this -> hasMany(Vendor::class,'category_id');
+        return $this -> hasMany(Vendor::class,'category_id','id');
     }
+
+    public function subCategories(){
+        return $this->hasMany(SubCategory::class,'category_id','id');
+    }
+
+
 
 }

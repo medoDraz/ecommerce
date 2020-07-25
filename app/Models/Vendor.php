@@ -31,7 +31,7 @@ class Vendor extends Model
     }
 
     public function getImagePathAttribute(){
-        return asset('public/uploads/vendors/'.$this->logo);
+        return asset('uploads/vendors/'.$this->logo);
     }
 
     public function scopeSelection($query){

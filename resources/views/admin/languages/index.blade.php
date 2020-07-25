@@ -72,13 +72,6 @@
                                                         <td>
                                                             <div class="btn-group" role="group"
                                                                  aria-label="Basic example">
-                                                                @if (auth()->user()->hasPermission('languages_update'))
-                                                                    <a href="{{route('admin.languages.edit',$language -> id)}}"
-                                                                       class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
-                                                                        <i class="la la-edit"></i>
-                                                                        @lang('site.edit')
-                                                                    </a>
-                                                                @endif
 
                                                                 @if (auth()->user()->hasPermission('languages_delete'))
                                                                     <form
@@ -94,6 +87,39 @@
 
                                                                     </form>
                                                                 @endif
+                                                            </div>
+
+                                                            <div class="btn-group float-md-right" role="group"
+                                                                 aria-label="Button group with nested dropdown">
+                                                                <button
+                                                                    class="btn btn-outline-primary dropdown-toggle dropdown-menu-right box-shadow-2 px-2"
+                                                                    id="btnGroupDrop1" type="button"
+                                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                                    aria-expanded="false"><i
+                                                                        class="ft-settings icon-left"></i>
+                                                                </button>
+                                                                <div class="dropdown-menu"
+                                                                     aria-labelledby="btnGroupDrop1">
+
+                                                                    @if (auth()->user()->hasPermission('languages_update'))
+                                                                        <a href="{{route('admin.languages.edit',$language -> id)}}"
+                                                                           class="px-2 ">
+                                                                            <i class="la la-edit"></i>
+                                                                            @lang('site.edit')
+                                                                        </a>
+                                                                    @endif
+
+                                                                        @if (auth()->user()->hasPermission('languages_delete'))
+                                                                            
+                                                                                <a href="{{ route('admin.languages.destroy',$language -> id) }}"
+                                                                                        class=" delete px-2 mr-1 mb-1">
+                                                                                    <i class="la la-trash"></i>
+                                                                                    @lang('site.delete')
+                                                                                </a>
+
+                                                                    
+                                                                        @endif
+                                                                </div>
                                                             </div>
                                                         </td>
                                                     </tr>

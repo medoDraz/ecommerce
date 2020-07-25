@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-    <title>@lang('site.main_categories')</title>
+    <title>@lang('site.sub_categories')</title>
 @endsection
 @section('content')
     <div class="app-content content">
@@ -14,7 +14,7 @@
                                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i
                                             class="la la-home"></i> @lang('site.dashboard') </a>
                                 </li>
-                                <li class="breadcrumb-item active">@lang('site.main_categories')
+                                <li class="breadcrumb-item active">@lang('site.sub_categories')
                                 </li>
                             </ol>
                         </div>
@@ -28,7 +28,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">@lang('site.all_main_categories') </h3>
+                                    <h3 class="card-title">@lang('site.all_sub_categories') </h3>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -47,7 +47,7 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
                                         <table
-                                            class="table display nowrap table-striped text-center table-bordered zero-configuration">
+                                            class="table display nowrap table-striped table-bordered zero-configuration">
                                             <thead>
                                             <tr>
                                                 <th>@lang('site.category')</th>
@@ -62,18 +62,51 @@
 
                                             @isset($categories)
                                                 @foreach($categories as $category)
-                                                    <tr >
-                                                        <td style="vertical-align: middle;">{{$category -> name}}</td>
-                                                        <td style="vertical-align: middle;">{{get_default_lang()}}</td>
-                                                        <td style="vertical-align: middle;">{{$category -> getActive()}}</td>
-                                                        <td style="vertical-align: middle;">{{$category ->vendors->count()}}</td>
-                                                        <td style="vertical-align: middle;"><img src="{{ $category->image_path}}" style="width: 110px"
+                                                    <tr>
+                                                        <td>{{$category -> name}}</td>
+                                                        <td>{{get_default_lang()}}</td>
+                                                        <td>{{$category -> getActive()}}</td>
+                                                        <td>{{$category ->vendors->count()}}</td>
+                                                        <td><img src="{{ $category->image_path}}" style="width: 150px"
                                                                  class="img-thumbnail" alt=""></td>
-                                                        <td style="vertical-align: middle;">
-                                                            <div class="btn-group " role="group"
+                                                        <td>
+                                                            <div class="btn-group" role="group"
+                                                                 aria-label="Basic example">
+                                                                @if (auth()->user()->hasPermission('sub_categories_update'))
+                                                                    <a href="{{ route('admin.subcategories.edit',$category -> id) }}"
+                                                                       class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                        <i class="la la-edit"></i>
+                                                                        @lang('site.edit')</a>
+                                                                @endif
+
+                                                                @if (auth()->user()->hasPermission('sub_categories_delete'))
+                                                                    <form
+                                                                        action="{{ route('admin.subcategories.destroy',$category -> id) }}"
+                                                                        method="post" style="display: inline-block;">
+                                                                        {{ csrf_field() }}
+                                                                        {{ method_field('delete') }}
+                                                                        <button type="submit"
+                                                                                class="btn btn-outline-danger delete btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                            <i class="la la-trash"></i>
+                                                                            @lang('site.delete')
+                                                                        </button>
+
+                                                                    </form>
+                                                                @endif
+
+                                                                @if (auth()->user()->hasPermission('sub_categories_active'))
+                                                                    <a href="{{route('admin.subcategories.editactive',$category -> id)}}"
+                                                                       class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
+
+                                                                        {{$category -> active == 0 ? 'تفعيل'  : 'إلغاء تفعيل'}}
+                                                                    </a>
+                                                                @endif
+                                                            </div>
+
+                                                            <div class="btn-group float-md-right" role="group"
                                                                  aria-label="Button group with nested dropdown">
                                                                 <button
-                                                                    class="btn btn-outline-primary dropdown-toggle dropdown-menu-right box-shadow-2 "
+                                                                    class="btn btn-outline-primary dropdown-toggle dropdown-menu-right box-shadow-2 px-2"
                                                                     id="btnGroupDrop1" type="button"
                                                                     data-toggle="dropdown" aria-haspopup="true"
                                                                     aria-expanded="false"><i
@@ -82,50 +115,37 @@
                                                                 <div class="dropdown-menu"
                                                                      aria-labelledby="btnGroupDrop1">
 
-                                                                    <div>
-                                                                    @if (auth()->user()->hasPermission('main_categories_update'))
-                                                                        <a href="{{route('admin.maincategories.edit',$category -> id)}}"
-                                                                           class="px-2 py-2">
+                                                                    @if (auth()->user()->hasPermission('languages_update'))
+                                                                        <a href="#"
+                                                                           class="px-2 ">
                                                                             <i class="la la-edit"></i>
                                                                             @lang('site.edit')
                                                                         </a>
                                                                     @endif
-                                                                </div>
 
-                                                                    <div>
-                                                                        @if (auth()->user()->hasPermission('main_categories_active'))
-                                                                            <a href="{{route('admin.maincategories.editactive',$category -> id)}}"
-                                                                               class="px-2">
-                                                                               <i class="la la-eye"></i>
-                                                                                {{$category -> active == 0 ? 'تفعيل'  : 'إلغاء تفعيل'}}
-                                                                            </a>
-                                                                        @endif
-                                                                    </div>
-
-                                                                    <div>
-                                                                        @if (auth()->user()->hasPermission('main_categories_delete'))
+                                                                    @if (auth()->user()->hasPermission('languages_delete'))
                                                                         <form
-                                                                        action="{{ route('admin.maincategories.destroy',$category -> id) }}"
-                                                                        method="post">
-                                                                        {{ csrf_field() }}
-                                                                        {{ method_field('delete') }}
-                                                                            <button type="submit" style="color: #1E9FF2;" 
-                                                                                class="btn btn-link delete mr-1 px-2">
+                                                                            action="{{ route('admin.languages.destroy',$language -> id) }}"
+                                                                            method="post" style="display: inline-block;">
+                                                                            {{ csrf_field() }}
+                                                                            {{ method_field('delete') }}
+                                                                            <a type="submit" href="#"
+                                                                               class=" delete px-2 mr-1 mb-1">
                                                                                 <i class="la la-trash"></i>
                                                                                 @lang('site.delete')
-                                                                            </button>
+                                                                            </a>
 
                                                                         </form>
-                                                                         @endif
-                                                                    </div>
-
-
+                                                                    @endif
                                                                 </div>
                                                             </div>
+
                                                         </td>
                                                     </tr>
                                                 @endforeach
                                             @endisset
+
+
                                             </tbody>
                                         </table>
                                         <div class="justify-content-center d-flex">
@@ -140,10 +160,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('script')
-<script type="text/javascript">
-    
-</script>
 @endsection

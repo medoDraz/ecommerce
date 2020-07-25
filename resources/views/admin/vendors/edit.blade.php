@@ -230,50 +230,33 @@
 @endsection
 @section('script')
 <script>
-        let lat  = $('#latitude').val();
-        let lng = $('#longitude').val();
-        $('#pac-input').val('{{$vendor  -> address}}');
-        if($('#latitude').val() !== "" && $('#longitude').val() !== ""){
-            prevlat = lat;
-            prevLng = lng;
-        }else{
-            prevlat =24.694970;
-            prevLng =46.724130;
-        }
+        $("#pac-input").focusin(function() {
+            $(this).val('{{ $vendor->address }}');
+        });
+        // This example adds a search box to a map, using the Google Place Autocomplete
+        // feature. People can enter geographical searches. The search box will return a
+        // pick list containing a mix of places and predicted search terms.
+        // This example requires the Places library. Include the libraries=places
+        // parameter when you first load the API. For example:
+        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
         function initAutocomplete() {
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 24.740691, lng: 46.6528521 },
-                zoom: 13,
-                mapTypeId: 'roadmap'
+            var pos = {lat:   {{ $vendor->latitude }} ,  lng: {{ $vendor->longitude }} };
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: pos
             });
+            infoWindow = new google.maps.InfoWindow;
+            geocoder = new google.maps.Geocoder();
+            marker = new google.maps.Marker({
+                position: pos,
+                map: map,
+                title: '{{ $vendor->address }}'
+            });
+            infoWindow.setContent('{{ $vendor->name }}');
+            infoWindow.open(map, marker);
             // move pin and current location
             infoWindow = new google.maps.InfoWindow;
             geocoder = new google.maps.Geocoder();
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    map.setCenter(pos);
-                    var marker = new google.maps.Marker({
-                        position: new google.maps.LatLng(pos),
-                        map: map,
-                        title: 'موقعك الحالي'
-                    });
-                    markers.push(marker);
-                    marker.addListener('click', function() {
-                        geocodeLatLng(geocoder, map, infoWindow,marker);
-                    });
-                    // to get current position address on load
-                    google.maps.event.trigger(marker, 'click');
-                }, function() {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
-            }
             var geocoder = new google.maps.Geocoder();
             google.maps.event.addListener(map, 'click', function(event) {
                 SelectedLatLng = event.latLng;
@@ -340,7 +323,7 @@
             }
             // Create the search box and link it to the UI element.
             var input = document.getElementById('pac-input');
-            $("#pac-input").val("أبحث هنا ");
+            $("#pac-input").val("{{ $vendor->address }}");
             var searchBox = new google.maps.places.SearchBox(input);
             map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
             // Bias the SearchBox results towards current map's viewport.

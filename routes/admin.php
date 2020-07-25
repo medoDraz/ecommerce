@@ -27,6 +27,11 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
     Route::resource('maincategories', 'MainCategoriesController')->except(['show']);
     Route::get('maincategories/editactive/{cat_id}', 'MainCategoriesController@editactive')->name('maincategories.editactive');
 
+    ######################### Begin subcategories Route ###################
+
+    Route::resource('subcategories', 'SubCategoriesController')->except(['show']);
+    Route::get('subcategories/editactive/{cat_id}', 'SubCategoriesController@editactive')->name('subcategories.editactive');
+
     ######################### Begin Vendors Route ##########################
 
     Route::resource('vendors', 'VendorsController')->except(['destroy']);

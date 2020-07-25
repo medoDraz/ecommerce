@@ -8,6 +8,7 @@ return [
             'languages' => 'c,r,u,d,a',
             'vendors' => 'c,r,u,d,a',
             'main_categories' => 'c,r,u,d,a',
+            'sub_categories' => 'c,r,u,d,a',
 
         ],
         'admin' => [

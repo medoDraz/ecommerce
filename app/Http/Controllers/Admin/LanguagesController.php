@@ -38,7 +38,8 @@ class LanguagesController extends Controller
                 $request->request->add(['active' => 0]);
 
             Language::create($request->except(['_token']));
-            return redirect()->route('admin.languages.index')->with(['success' => 'تم حفظ اللغة بنجاح']);
+            // session()->flash('success', __('site.added_successfully'));
+            return redirect()->route('admin.languages.index')->with(['success' =>  __('site.added_successfully')]);
         } catch (\Exception $ex) {
             return redirect()->route('admin.languages.index')->with(['error' => 'هناك خطا ما يرجي المحاوله فيما بعد']);
         }

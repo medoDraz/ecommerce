@@ -29,7 +29,7 @@ class Admin extends Authenticatable
     ];
 
     public function getImagePathAttribute(){
-        return asset('public/uploads/users/'.$this->photo);
+        return asset('uploads/users/'.$this->photo);
     }
 
     public function getNameAttribute($value){
